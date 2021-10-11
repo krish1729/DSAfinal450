@@ -3,7 +3,7 @@
 import java.lang.reflect.GenericDeclaration;
 import java.util.Scanner;
 
-public class arrays3 {
+public class array3 {
 
     public static void Swap(int[] a, int i, int j){
         int temp = a[i];
