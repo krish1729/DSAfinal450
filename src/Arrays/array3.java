@@ -1,3 +1,4 @@
+package Arrays;
 //to find kth min and max elements of an array
 
 import java.lang.reflect.GenericDeclaration;

@@ -1,3 +1,4 @@
+package Arrays;
 //find minimum and maximum elements of array
 
 

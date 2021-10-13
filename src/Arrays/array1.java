@@ -1,3 +1,4 @@
+package Arrays;
 //reverse the array
 
 import java.io.BufferedReader;

@@ -1,3 +1,4 @@
+package Arrays;
 //Given two arrays a[] and b[] of size n and m respectively. The task is to find union and intersection between these two arrays.
 
 
