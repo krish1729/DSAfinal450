@@ -1,45 +1,39 @@
 package Arrays;
-import java.util.Arrays;
 
-/*Given an array arr[] denoting heights of N towers and a positive integer K, you have to modify the
-height of each tower either by increasing or decreasing them by K only once. After modifying,
-height should be a non-negative integer. Find out what could be the possible minimum difference
-of the height of shortest and longest towers  after you have modified each tower.*/
+/*Given an array Arr[] of N integers. Find the contiguous sub-array(containing at least one number) which has the
+maximum sum and return its sum.(Kadane's Algorithm)*/
 
 public class array8 {
     public static void main(String[] args) {
-        int arr[] = {3,9,12,16,20};
+
+        int arr[] = {1,2,3,-2,5};
         int n = arr.length;
-        int k = 3;
 
+        int maxSub[] = new int[n];
+        maxSub[0] = arr[0];
+        /*creating a new array called maxSub to store the larget contiguous subarrays ending at each index. It's first element is
+        the first element of the original array as there are no contiguous subarrays ending at index 1.*/
 
-        Arrays.sort(arr);
-//        sorting the given array
-
-        int ans =  arr[n-1] - arr[0];
-//        getting the initial maximum difference between towers for comparision purposes
-
-        int smallest = arr[0]+k;
-        int largest = arr[n-1]-k;
-        /*to minimize the maximum difference between towers, we need to add smallest tower by k and decrease largest tower
-        by k. So, we store these values in the two variables given above.*/
-
-        int mi,ma;
-        /*these are two variables, which at any given time will hold the minimum and maximum tower heights after performing either
-        of the two operations on tower heights.*/
-
-        for(int i =0; i< n-1; i++) {
-            mi = Math.min(smallest, arr[i+1] - k);
-            ma = Math.max(largest, arr[i] + k);
-            /*for each index we traverse, we check if either increasing or decreasing the height by k yields new minimum and
-            maximum values or not. We do this by comparing them with the existing smallest and largest variables. */
-
-            if(mi < 0) continue;
-            ans = Math.min(ans, ma - mi);
-            /*now, we check if the difference of the obtained minimum and maximum values is minimum or not. If the difference is
-            not minimum, even for the most minimum and maximum values in the entire array, they will be discarded in favour of
-            the minimum difference between minimum and maximum values.*/
+        for(int i = 1; i<n; i++){
+            if(arr[i] > (maxSub[i-1]+arr[i])){
+                maxSub[i] = arr[i];
+            }
+            else{
+                maxSub[i] = (maxSub[i-1]+arr[i]);
+            }
         }
-        System.out.println(ans);
+        /*here, we apply the Kadane's theorem logic, i.e. to find the maximum contiguous subarray at an index 'i',
+        it is the maximum of i and the maximum subarray of the previous index.*/
+
+        int max = maxSub[0];
+        for(int i = 1; i<n; i++){
+            if(maxSub[i] > max){
+                max = maxSub[i];
+            }
+        }
+        /*now, we return the maximum element of the maxSub array, which consists of the sums of the maximum contiguous subarrays
+        at those particular subarrays in the original array, i.e. 'arr'.*/
+
+        System.out.println(max);
     }
 }

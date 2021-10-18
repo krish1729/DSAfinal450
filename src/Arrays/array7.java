@@ -1,39 +1,25 @@
 package Arrays;
 
-/*Given an array Arr[] of N integers. Find the contiguous sub-array(containing at least one number) which has the
-maximum sum and return its sum.(Kadane's Algorithm)*/
+/*Given an array, rotate the array by one position in clock-wise direction.*/
 
 public class array7 {
     public static void main(String[] args) {
-
-        int arr[] = {1,2,3,-2,5};
+        int arr[] = {1,2,3,4,5};
         int n = arr.length;
 
-        int maxSub[] = new int[n];
-        maxSub[0] = arr[0];
-        /*creating a new array called maxSub to store the larget contiguous subarrays ending at each index. It's first element is
-        the first element of the original array as there are no contiguous subarrays ending at index 1.*/
+        int temp = arr[n - 1];
+        /*storing the last element of the array in a temporary variable for future purposes*/
 
-        for(int i = 1; i<n; i++){
-            if(arr[i] > (maxSub[i-1]+arr[i])){
-                maxSub[i] = arr[i];
-            }
-            else{
-                maxSub[i] = (maxSub[i-1]+arr[i]);
-            }
+        for(int i = n - 1; i>0; i--){
+            arr[i] = arr[i - 1];
         }
-        /*here, we apply the Kadane's theorem logic, i.e. to find the maximum contiguous subarray at an index 'i',
-        it is the maximum of i and the maximum subarray of the previous index.*/
+        /*shifting the place of array elements by one in clockwise direction from right to left*/
 
-        int max = maxSub[0];
-        for(int i = 1; i<n; i++){
-            if(maxSub[i] > max){
-                max = maxSub[i];
-            }
+        arr[0] = temp;
+        /*now assigning the element stored in temporary variable to the first element of the array*/
+
+        for(int x : arr){
+            System.out.println(x + " ");
         }
-        /*now, we return the maximum element of the maxSub array, which consists of the sums of the maximum contiguous subarrays
-        at those particular subarrays in the original array, i.e. 'arr'.*/
-
-        System.out.println(max);
     }
 }
