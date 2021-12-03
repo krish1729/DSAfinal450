@@ -46,7 +46,7 @@ public class array13 {
     }
 
     public static void main(String[] args) {
-        int[][] intervals = {{1,3},{2,6},{8,10},{15,18}};
+        int[][] intervals = {{1,4},{0,4}};
 
         System.out.println(Arrays.deepToString(merge(intervals)));
     }
